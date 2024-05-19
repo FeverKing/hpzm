@@ -1,0 +1,61 @@
+name: Release when version tag is pushed
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+
+  test:
+    name: Release hpzm
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set up Go 1.22.3
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.22.3
+        id: go
+
+      - name: Check out code into the Go module directory
+        uses: actions/checkout@v2
+
+
+      - name: Building
+        run: |
+          CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags="-s -w" -o hpzm_linux_amd64 cmd/hpzm.go
+          CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -ldflags="-s -w" -o hpzm_windows_amd64.exe cmd/hpzm.go
+          CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -ldflags="-s -w" -o hpzm_darwin_amd64 cmd/hpzm.go
+          CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build -ldflags="-s -w" -o hpzm_linux_arm64 cmd/hpzm.go
+          CGO_ENABLED=0 GOOS=linux GOARCH=arm go build -ldflags="-s -w" -o hpzm_linux_arm cmd/hpzm.go
+          CGO_ENABLED=0 GOOS=linux GOARCH=386 go build -ldflags="-s -w" -o hpzm_linux_386 cmd/hpzm.go
+          CGO_ENABLED=0 GOOS=windows GOARCH=386 go build -ldflags="-s -w" -o hpzm_windows_386.exe cmd/hpzm.go
+
+      - name: Get tag
+        id: tag
+        uses: dawidd6/action-get-tag@v1
+        with:
+          # Optionally strip `v` prefix
+          strip_v: false
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{steps.tag.outputs.tag}}
+          release_name: ${{steps.tag.outputs.tag}}
+          release: true
+          files: |
+            hpzm_linux_386
+            hpzm_linux_amd64
+            hpzm_linux_arm
+            hpzm_linux_arm64
+            hpzm_windows_386.exe
+            hpzm_windows_amd64.exe
+            hpzm_darwin_amd64
+            

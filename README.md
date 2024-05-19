@@ -4,9 +4,9 @@
 
 
 
-## What is this tool for?
+## What Is This Tool For?
 
-This repo is based on `github.com/Ullaakut/nmap/v3` , it's mainly a console application for generating nmap fingerprints on specific devices and managing them. By using this tool, you can also merge your customize fingerprints into your local `nmap-os-db` and accessing it with your nmap.
+This repo is based on `github.com/Ullaakut/nmap/v3` , it's mainly a console application for generating nmap fingerprints of specific devices and managing them. By using this tool, you can also merge your customize fingerprints into your local `nmap-os-db` and accessing it with your nmap.
 
 
 

@@ -36,13 +36,13 @@ func init() {
 
 	listNCmd := &grumble.Command{
 		Name: "n",
-		Help: "list all fingerprints in nmap database",
+		Help: "list all fingerprints in main os database",
 
 		Flags: func(f *grumble.Flags) {
-			f.String("N", "nmap_db", "", "the database to store the all fingerprint")
+			f.String("N", "main_os_db", "", "the database to store the all fingerprint")
 		},
 		Run: func(c *grumble.Context) error {
-			nmapDb := c.Flags.String("nmap_db")
+			nmapDb := c.Flags.String("main_os_db")
 			if nmapDb == "" {
 				var err error
 				nmapDb, err = filemanager.GetNmapOsDbPath()

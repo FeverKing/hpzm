@@ -78,10 +78,10 @@ func init() {
 			if err != nil {
 				log.Errorf("failed to detect os of the target: %v", err)
 			}
-			fmt.Println("os of the target:")
-			for host, os := range osInfo {
-				fmt.Println("host:", host, "os:", os)
-			}
+			//fmt.Println("os of the target:")
+			//for host, os := range osInfo {
+			//	fmt.Println("host:", host, "os:", os)
+			//}
 			fmt.Println("total:", len(osInfo))
 			return nil
 		},

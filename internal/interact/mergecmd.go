@@ -11,12 +11,12 @@ func init() {
 		Name: "merge",
 		Help: "Merge custom fingerprints to the database",
 		Flags: func(f *grumble.Flags) {
-			f.String("n", "nmap_db", "", "file to merge")
-			f.String("g", "gmap_db", "os-info", "output file")
+			f.String("n", "main_db", "", "file to merge")
+			f.String("g", "hpzm_db", "os-info", "output file")
 		},
 		Run: func(c *grumble.Context) error {
-			nmapDb := c.Flags.String("nmap_db")
-			gmapDb := c.Flags.String("gmap_db")
+			nmapDb := c.Flags.String("main_db")
+			gmapDb := c.Flags.String("hpzm_db")
 			if nmapDb == "" {
 				var err error
 				nmapDb, err = filemanager.GetNmapOsDbPath()

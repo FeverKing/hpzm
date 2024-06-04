@@ -10,7 +10,7 @@ import (
 
 const appName = "hpzm"
 const appDescription = "a High Precision Zone Mapper"
-const appVersion = "v0.0.1"
+const appVersion = "v0.0.3"
 
 var (
 	grumbleApp = grumble.New(&grumble.Config{

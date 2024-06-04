@@ -31,6 +31,7 @@ jobs:
           CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags="-s -w" -o hpzm_linux_amd64 cmd/hpzm.go
           CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -ldflags="-s -w" -o hpzm_windows_amd64.exe cmd/hpzm.go
           CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -ldflags="-s -w" -o hpzm_darwin_amd64 cmd/hpzm.go
+          CGO_ENABLED=0 GOOS=darwin GOARCH=arm64 go build -ldflags="-s -w" -o hpzm_darwin_arm64 cmd/hpzm.go
           CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build -ldflags="-s -w" -o hpzm_linux_arm64 cmd/hpzm.go
           CGO_ENABLED=0 GOOS=linux GOARCH=arm go build -ldflags="-s -w" -o hpzm_linux_arm cmd/hpzm.go
           CGO_ENABLED=0 GOOS=linux GOARCH=386 go build -ldflags="-s -w" -o hpzm_linux_386 cmd/hpzm.go
@@ -59,4 +60,5 @@ jobs:
             hpzm_windows_386.exe
             hpzm_windows_amd64.exe
             hpzm_darwin_amd64
+            hpzm_darwin_arm64
             

@@ -82,6 +82,14 @@ func HasFpInOsInfo(fullNameString, dbPath string) bool {
 }
 
 func GetNmapOsDbPath() (string, error) {
+	if runtime.GOOS == "windows" {
+		osFile := "./lib/scan_lib/nmap-os-db"
+		if _, err := os.Stat(osFile); os.IsNotExist(err) {
+			return "", errors.New("missing key files")
+		} else {
+			return osFile, nil
+		}
+	}
 	nmapExecPath, err := exec.LookPath("nmap")
 	if err != nil {
 		return "", errors.New("nmap is not installed")

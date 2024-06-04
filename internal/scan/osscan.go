@@ -3,10 +3,10 @@ package scan
 import (
 	"context"
 	"fmt"
-	"github.com/Ullaakut/nmap/v3"
 	"gmap/internal/cache"
 	"gmap/internal/fingerprints"
 	"gmap/internal/log"
+	"gmap/internal/nmap/v3"
 	"strings"
 )
 
@@ -25,7 +25,7 @@ func GenTargetFingerPrint(target string) (string, error) {
 	}
 	result, warnings, err := scanner.Run()
 	if len(*warnings) > 0 {
-		log.Warnf("run finished with warnings: %s", *warnings)
+		// log.Warnf("run finished with warnings: %s", *warnings)
 	}
 	if err != nil {
 		// log.Errorf("unable to run nmap scan: %v", err)
